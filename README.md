@@ -19,37 +19,6 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(126, 34, 206, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -250px;
-            right: -250px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        body::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(30, 60, 114, 0.4) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -200px;
-            left: -200px;
-            animation: float 8s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-30px); }
         }
 
         .container {
@@ -61,8 +30,6 @@
             max-width: 650px;
             width: 100%;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            z-index: 1;
         }
 
         .logo {
@@ -75,19 +42,7 @@
             font-weight: 900;
             color: #ffffff;
             letter-spacing: 4px;
-            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 5px 20px rgba(255, 255, 255, 0.3),
-                             0 0 30px rgba(126, 34, 206, 0.5);
-            }
-            to {
-                text-shadow: 0 5px 20px rgba(255, 255, 255, 0.5),
-                             0 0 50px rgba(126, 34, 206, 0.8);
-            }
+            text-shadow: 0 5px 20px rgba(126, 34, 206, 0.5);
         }
 
         .get-key-btn {
@@ -99,31 +54,19 @@
             background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
             border: none;
             border-radius: 15px;
-            cursor: not-allowed;
-            transition: all 0.4s ease;
+            cursor: pointer;
+            transition: all 0.3s ease;
             margin-bottom: 25px;
-            opacity: 0.6;
             box-shadow: 0 10px 35px rgba(126, 34, 206, 0.4);
-            position: relative;
-            overflow: hidden;
         }
 
-        .get-key-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+        .get-key-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 45px rgba(126, 34, 206, 0.6);
         }
 
-        .get-key-btn:hover::before {
-            width: 300px;
-            height: 300px;
+        .get-key-btn:active {
+            transform: translateY(0);
         }
 
         .status {
@@ -133,16 +76,129 @@
             margin-bottom: 35px;
             font-weight: 600;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            display: none;
         }
 
-        .status-icon {
-            animation: pulse 1.5s infinite;
+        .status.show {
+            display: block;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content h2 {
+            color: #7e22ce;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .modal-content p {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .youtube-btn {
+            background: #ff0000;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
             display: inline-block;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+        .youtube-btn:hover {
+            background: #cc0000;
+            transform: scale(1.05);
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .check-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .checking {
+            color: #7e22ce;
+            font-size: 16px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .checking.show {
+            display: block;
+        }
+
+        .key-display {
+            background: rgba(126, 34, 206, 0.1);
+            border: 2px solid #7e22ce;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .key-display.show {
+            display: block;
+        }
+
+        .key-display h3 {
+            color: #7e22ce;
+            margin-bottom: 10px;
+        }
+
+        .key-code {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            word-break: break-all;
         }
 
         .tasks {
@@ -156,14 +212,13 @@
             padding: 25px;
             margin-bottom: 18px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .task-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(126, 34, 206, 0.4);
-            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(126, 34, 206, 0.3);
         }
 
         .task-header {
@@ -234,29 +289,6 @@
 
         .icon {
             font-size: 22px;
-            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 30px 20px;
-            }
-            
-            .logo h1 {
-                font-size: 42px;
-            }
-
-            .timer {
-                gap: 8px;
-            }
-
-            .time-value {
-                font-size: 24px;
-            }
-
-            .time-label {
-                font-size: 9px;
-            }
         }
     </style>
 </head>
@@ -266,12 +298,15 @@
             <h1>EPILOG</h1>
         </div>
 
-        <button class="get-key-btn" disabled>
+        <button class="get-key-btn" onclick="openModal()">
             🔑 Get Key
         </button>
 
-        <div class="status">
-            <span class="status-icon">⚠️</span> Функция временно недоступна
+        <div class="status" id="status"></div>
+
+        <div class="key-display" id="keyDisplay">
+            <h3>✅ Ваш ключ:</h3>
+            <div class="key-code" id="keyCode"></div>
         </div>
 
         <div class="tasks">
@@ -364,12 +399,26 @@
         </div>
     </div>
 
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>🎉 Получить ключ</h2>
+            <p>Для получения ключа необходимо подписаться на YouTube канал:</p>
+            <a href="https://youtube.com/@tiarmnss?si=cvWg81qu9cloGCNN" target="_blank" class="youtube-btn">
+                ▶️ Подписаться на канал
+            </a>
+            <br>
+            <button class="check-btn" onclick="checkSubscription()">
+                ✓ Проверить подписку
+            </button>
+            <div class="checking" id="checking">⏳ Проверяем подписку...</div>
+        </div>
+    </div>
+
     <script>
-        // Начальное время для каждого задания (в секундах)
         let timers = {
-            1: 5 * 60 * 60,      // 5 часов
-            2: 12 * 60 * 60,     // 12 часов
-            3: 12 * 60 * 60      // 12 часов
+            1: 5 * 60 * 60,
+            2: 12 * 60 * 60,
+            3: 12 * 60 * 60
         };
 
         function updateTimer(taskId) {
@@ -394,12 +443,58 @@
             document.getElementById(`seconds${taskId}`).textContent = seconds;
         }
 
-        // Обновление таймеров каждую секунду
         setInterval(() => {
             updateTimer(1);
             updateTimer(2);
             updateTimer(3);
         }, 1000);
+
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+        }
+
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        function generateKey() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let key = '';
+            for (let i = 0; i < 16; i++) {
+                if (i > 0 && i % 4 === 0) key += '-';
+                key += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return key;
+        }
+
+        function checkSubscription() {
+            const checkingEl = document.getElementById('checking');
+            checkingEl.classList.add('show');
+            
+            setTimeout(() => {
+                checkingEl.classList.remove('show');
+                closeModal();
+                
+                const key = generateKey();
+                document.getElementById('keyCode').textContent = key;
+                document.getElementById('keyDisplay').classList.add('show');
+                
+                const statusEl = document.getElementById('status');
+                statusEl.textContent = '✅ Подписка подтверждена! Ключ получен.';
+                statusEl.style.color = '#4ade80';
+                statusEl.classList.add('show');
+                
+                setTimeout(() => {
+                    statusEl.classList.remove('show');
+                }, 5000);
+            }, 2000);
+        }
     </script>
 </body>
 </html>
